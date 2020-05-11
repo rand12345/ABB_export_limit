@@ -41,26 +41,26 @@ def run_code():
     print_power_vars()
 
     # example settings
-    power = 100     # limit max generation to percent [int]
+    power_ = 100     # limit max generation to percent [int]
     timeout_ = 4    # minutes [int]
     smooth_ = 4     # power transition in seconds [int]
 
-    while power > 9:
-        power -= 10
+    while power_ > 9:
         now = datetime.datetime.now()
-        print('{} - Setting max power to {}%'.format(now, power))
+        print('{} - Setting max power to {}%'.format(now, power_))
         if enter_service_mode():
-            client.send_power_limiter(timeout_, power, smooth_)
+            client.send_power_limiter(timeout_, power_, smooth_)
         else:
             continue
         print_power_vars()
         time.sleep(smooth_ + 1)
         print('{} - {}W'.format(now, client.measure(3)))
+        power_ -= 10
 
     print('\nFinished, setting inverter back to 100%')
-    power = 100
+    power_ = 100
     if enter_service_mode():
-        client.send_power_limiter(timeout_, power, smooth_)
+        client.send_power_limiter(timeout_, power_, smooth_)
         print('Done, exiting')
     else:
         print('Service mode failed')
