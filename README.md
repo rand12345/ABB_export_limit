@@ -4,11 +4,15 @@ Fork of aurorapy by Claudio Catterina https://code.energievalsabbia.it/ccatterin
 Requirements:
 
 "flake8" = "*"
+
 pylint = "*"
+
 mock = "*"
 
 pyserial = "==3.2.1"
+
 future = "==0.16.0"
+
 six = "*"
 
 Added power limiting feature, service mode enable and generation of service mode password from serial number request.
